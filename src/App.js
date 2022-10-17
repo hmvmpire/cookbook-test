@@ -1,7 +1,7 @@
-import React from 'react';
-import logo from './logo.svg';
+import React,{useState} from 'react';
 import './App.css';
-
+import RecipeList from './components/ListComponents/recipeList'
+import RecipeDetail from './components/detailComponent/recipeDetail'
 const recipes = [
   {
     author: "Jim",
@@ -16,8 +16,17 @@ const recipes = [
 ]
 
 function App() {
+  const [selectedRecipe, setSelectedrecipe] = useState(recipes[0]);
   return (
-    <div className="App">
+    <div className="App" >
+      <div className='listContainer'>
+       <h2 className='bold'>Recipe List</h2> 
+      <RecipeList changeRecipe={(index)=>setSelectedrecipe(recipes[index])} recipes={recipes} ></RecipeList>
+      </div>
+      <div className='detailConatiner'>
+      <h2 className='bold'>Recipe Detail</h2> 
+      <RecipeDetail recipe={selectedRecipe} ></RecipeDetail>
+      </div>
     </div>
   );
 }
